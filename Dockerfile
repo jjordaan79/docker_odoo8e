@@ -42,7 +42,9 @@ COPY ./openerp-server.conf /etc/odoo/
 RUN chown odoo /etc/odoo/openerp-server.conf
 
 # Mount /var/lib/odoo to allow restoring filestore and /mnt/extra-addons for users addons
-
+RUN mkdir -p /opt/africahr_odoo8/custom_modules \
+        && chown -R odoo /opt
+VOLUME ["/var/lib/odoo", "/opt/custom_modules"]
 
 # Expose Odoo services
 EXPOSE 8069 8071
